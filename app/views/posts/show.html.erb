@@ -5,14 +5,23 @@
   <%= @post.body %>
 </p>
 
+
+<% if Like.find_by(user_id: current_user.id) %>
+<%= link_to 'Dislike', post_like_path(@post), method: :delete %>
+<% else %>
+<%= link_to 'Like', post_likes_path(@post), method: :post %>
+<% end %>
+
 <p>
-  <strong>Comments:</strong>
-  
+  <strong>Comments:</strong> 
 </p>
+
 
 <% @post.comments.each do |comment| %>
 <% comment.content %>
 <% end %><br><br>
+
+
 
 <%= link_to 'Add comment', new_post_comment_path(@post) %><br>
 <%= link_to 'Edit', edit_post_path(@post) %><br>

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   resources :posts do
   	resources :comments
+  	resources :likes
   end
   get 'user/show'
   get 'user/index'
