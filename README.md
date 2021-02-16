@@ -1,4 +1,4 @@
-# PROJECT: Final Project
+# PROJECT: Facebook {Final Odin Project}
 
 
 ## Ruby Version
