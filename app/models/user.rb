@@ -21,6 +21,7 @@ class User < ApplicationRecord
             foreign_key: :requester_id,
             dependent: :destroy
 
+  after_create :send_welcome_email
 
   devise :omniauthable, omniauth_providers: %i[facebook]
   def self.from_omniauth(auth)
@@ -32,6 +33,12 @@ class User < ApplicationRecord
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.save!
     end
+  end
+
+
+ def send_welcome_email
+    UserMailer.welcome_email(self).deliver_now
+  
   end
 
 end
